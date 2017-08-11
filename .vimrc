@@ -1,12 +1,12 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer: 
+" Maintainer:
 "       Amir Salihefendic
 "       http://amix.dk - amix@amix.dk
 "
-" Version: 
-"       6.0 - 01/04/17 14:24:34 
+" Version:
+"       6.0 - 01/04/17 14:24:34
 "
-" Blog_post: 
+" Blog_post:
 "       http://amix.dk/blog/post/19691#The-ultimate-Vim-configuration-on-Github
 "
 " Awesome_version:
@@ -19,7 +19,7 @@
 " Syntax_highlighted:
 "       http://amix.dk/vim/vimrc.html
 "
-" Raw_version: 
+" Raw_version:
 "       http://amix.dk/vim/vimrc.txt
 "
 " Sections:
@@ -61,7 +61,7 @@ let g:mapleader = ","
 " Fast saving
 nmap <leader>w :w!<cr>
 
-" :W sudo saves the file 
+" :W sudo saves the file
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
 
@@ -73,7 +73,7 @@ command W w !sudo tee % > /dev/null
 set so=7
 
 " Avoid garbled characters in Chinese language windows OS
-let $LANG='en' 
+let $LANG='en'
 set langmenu=en
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
@@ -89,13 +89,24 @@ else
     set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 endif
 
-set autoindent                  " Indent at the same level of the previous line
+" Tab size
+set tabstop=4
 set shiftwidth=4                " Use indents of 4 spaces
+set softtabstop=4
+set noexpandtab
+set autowrite autowriteall      " write changes before changing buffers, :make and others
+set noerrorbells novisualbell   " no annoying error noises
+set report=0                    " always report the number of lines changed
+set nojoinspaces                " no double spaces when joining lines
+set nomodeline                  " don't use modelines, use securemodelines
+
+set wrapscan
+set autoindent                  " Indent at the same level of the previous line
 set ruler                       " Always show current position
 set cmdheight=2                 " Height of the command bar
 set hid                         " A buffer becomes hidden when it is abandoned
 set ignorecase                  " Ignore case when searching
-set smartcase                   " When searching try to be smart about cases 
+set smartcase                   " When searching try to be smart about cases
 set hlsearch                    " Highlight search results
 set incsearch                   " Makes search act like search in modern browsers
 set lazyredraw                  " Don't redraw while executing macros (good performance config)
@@ -106,6 +117,7 @@ set showmode                    " Display the current mode
 set cursorline                  " Highlight current line
 set foldcolumn=1                " Add a bit extra margin to the left
 set number                      " Add line numbers
+set showcmd                     " show info on the last/current command
 
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
@@ -130,7 +142,7 @@ set tm=500
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
-syntax enable 
+syntax enable
 
 " Enable 256 colors palette in Gnome Terminal
 if $COLORTERM == 'gnome-terminal'
@@ -228,8 +240,8 @@ map <leader>h :bprevious<cr>
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove 
-map <leader>t<leader> :tabnext 
+map <leader>tm :tabmove
+map <leader>t<leader> :tabnext
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
@@ -244,7 +256,7 @@ map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
-" Specify the behavior when switching between buffers 
+" Specify the behavior when switching between buffers
 try
   set switchbuf=useopen,usetab,newtab
   set stal=2
