@@ -202,6 +202,11 @@ alias l='ls -CF'
 alias vi='vim'
 alias desktop='cd /mnt/c/Users/greg/Desktop'
 alias lsa='ls --color -hAlF --group-directories-first'
+alias mkdir="mkdir -pv"
+alias rmf="rm -rf"
+alias wget="wget -c"
+alias top="htop"
+
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
