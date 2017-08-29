@@ -43,15 +43,17 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Sets how many lines of history VIM has to remember
-set history=1000
+
+" Use vim settings, rather then vi settings (much better!)
+" This must be first, because it changes other options as a side effect.
+set nocompatible
+
+" Change shell
+set shell=bash
 
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
-
-" Set to auto read when a file is changed from the outside
-set autoread
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
@@ -89,39 +91,64 @@ else
     set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 endif
 
-" Tab size
-set tabstop=4
-set shiftwidth=4                " Use indents of 4 spaces
-set softtabstop=4
-set noexpandtab
+set ai                          " Auto indent
+set autoindent                  " Indent at the same level of the previous line
+set autoread                    " Set to auto read when a file is changed from the outside
+set autoread                    " automatically reload files changed outside of Vim
 set autowrite autowriteall      " write changes before changing buffers, :make and others
+set backspace=eol,start,indent  " Configure backspace so it acts as it should act
+set clipboard=unnamed           " normal OS clipboard interaction
+set cmdheight=2                 " Height of the command bar
+set copyindent                  " copy the previous indentation on autoindenting
+set cursorline                  " Highlight current line
+set encoding=utf8               " Set utf8 as standard encoding and en_US as the standard language
+set expandtab                   " Use spaces instead of tabs
+set ffs=unix,dos,mac            " Use Unix as the standard file type
+set fileformats="unix,dos,mac"
+set foldcolumn=1                " Add a bit extra margin to the left
+set hid                         " A buffer becomes hidden when it is abandoned
+set history=1000                " Sets how many lines of history VIM has to remember
+set hlsearch                    " Highlight search results
+set ignorecase                  " Ignore case when searching
+set incsearch                   " Makes search act like search in modern browsers
+set laststatus=2                " Always show the status line
+set lazyredraw                  " Don't redraw while executing macros (good performance config)
+set lbr                         " Linebreak on 500 characters
+set magic                       " For regular expressions turn magic on
+set mat=2                       " How many tenths of a second to blink when matching
+set mouse=a                     " enable using the mouse if terminal emulator
+set nobackup                    " Turn backup off
+set noerrorbells                " No annoying sound on errors
 set noerrorbells novisualbell   " no annoying error noises
-set report=0                    " always report the number of lines changed
+set noexpandtab
 set nojoinspaces                " no double spaces when joining lines
 set nomodeline                  " don't use modelines, use securemodelines
-
-set wrapscan
-set autoindent                  " Indent at the same level of the previous line
-set ruler                       " Always show current position
-set cmdheight=2                 " Height of the command bar
-set hid                         " A buffer becomes hidden when it is abandoned
-set ignorecase                  " Ignore case when searching
-set smartcase                   " When searching try to be smart about cases
-set hlsearch                    " Highlight search results
-set incsearch                   " Makes search act like search in modern browsers
-set lazyredraw                  " Don't redraw while executing macros (good performance config)
-set magic                       " For regular expressions turn magic on
-set showmatch                   " Show matching brackets when text indicator is over them
-set mat=2                       " How many tenths of a second to blink when matching brackets
-set showmode                    " Display the current mode
-set cursorline                  " Highlight current line
-set foldcolumn=1                " Add a bit extra margin to the left
+set noswapfile
+set novisualbell
+set nowb
 set number                      " Add line numbers
+set report=0                    " always report the number of lines changed
+set ruler                       " Always show current position
+set shiftwidth=4                " 1 tab == 4 spaces
+set shiftwidth=4                " Use indents of 4 spaces
 set showcmd                     " show info on the last/current command
-
-" Configure backspace so it acts as it should act
-set backspace=eol,start,indent
+set showmatch                   " Show matching brackets when text indicator is over them
+set showmode                    " Display the current mode
+set si                          " Smart indent
+set smartcase                   " When searching try to be smart about cases
+set smarttab                    " Be smart when using tabs ;)
+set smarttab                    " insert tabs on the start of a line according to
+set softtabstop=4
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+set tabstop=4
+set tabstop=4                   " Tab size
+set tm=500
+set tw=500
 set whichwrap+=<,>,h,l
+set wrap                        " Wrap lines
+set wrapscan
+
+
 
 if has('statusline')
     set laststatus=2    " Broken down into easily includeable segments
@@ -132,11 +159,6 @@ if has('statusline')
     set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 endif
 
-" No annoying sound on errors
-set noerrorbells
-set novisualbell
-set t_vb=
-set tm=500
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -163,43 +185,6 @@ if has("gui_running")
     set t_Co=256
     set guitablabel=%M\ %t
 endif
-
-" Set utf8 as standard encoding and en_US as the standard language
-set encoding=utf8
-
-" Use Unix as the standard file type
-set ffs=unix,dos,mac
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Files, backups and undo
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Turn backup off, since most stuff is in SVN, git et.c anyway...
-set nobackup
-set nowb
-set noswapfile
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Text, tab and indent related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Use spaces instead of tabs
-set expandtab
-
-" Be smart when using tabs ;)
-set smarttab
-
-" 1 tab == 4 spaces
-set shiftwidth=4
-set tabstop=4
-
-" Linebreak on 500 characters
-set lbr
-set tw=500
-
-set ai "Auto indent
-set si "Smart indent
-set wrap "Wrap lines
 
 
 """"""""""""""""""""""""""""""
@@ -248,7 +233,6 @@ let g:lasttab = 1
 nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
 au TabLeave * let g:lasttab = tabpagenr()
 
-
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
 map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
@@ -266,12 +250,6 @@ endtry
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-
-""""""""""""""""""""""""""""""
-" => Status line
-""""""""""""""""""""""""""""""
-" Always show the status line
-set laststatus=2
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -283,13 +261,6 @@ nmap <M-j> mz:m+<cr>`z
 nmap <M-k> mz:m-2<cr>`z
 vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
-if has("mac") || has("macunix")
-  nmap <D-j> <M-j>
-  nmap <D-k> <M-k>
-  vmap <D-j> <M-j>
-  vmap <D-k> <M-k>
-endif
 
 " Delete trailing white space on save, useful for some filetypes ;)
 fun! CleanExtraSpaces()
