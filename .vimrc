@@ -148,8 +148,6 @@ set whichwrap+=<,>,h,l
 set wrap                        " Wrap lines
 set wrapscan
 
-
-
 if has('statusline')
     set laststatus=2    " Broken down into easily includeable segments
     set statusline=%<%f\                     " Filename
