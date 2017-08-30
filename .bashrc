@@ -13,7 +13,7 @@ esac
 HISTCONTROL="erasedups:ignoreboth"
 
 # append to the history file, don't overwrite it
-shopt -s histappend
+shopt -s histappend histreedit histverify
 
 # Save multi-line commands as one command
 shopt -s cmdhist
@@ -81,8 +81,6 @@ function smile_prompt
 
 ## SMARTER TAB-COMPLETION (Readline bindings) ##
 
-
-
 # Perform file completion in a case insensitive fashion
 bind "set completion-ignore-case on"
 
@@ -103,6 +101,7 @@ HISTFILESIZE=2000000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+export PAGER='less -e'
 export BLOCKSIZE=K              # set blocksize size
 export BROWSER='google-chrome'          # set default browser
 set -o notify                   # notify when jobs running in background terminate
@@ -126,10 +125,16 @@ bind Space:magic-space
 # Turn on recursive globbing (enables ** to recurse all directories)
 shopt -s globstar 2> /dev/null
 
+shopt -s cdable_vars                # set the bash option so that no '$' is required (disallow write access to terminal)
+shopt -s cdspell                # this will correct minor spelling errors in a cd command
+shopt -s checkhash
+
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;
-
 shopt -s extglob                # necessary for bash completion (programmable completion)
+
+shopt -s no_empty_cmd_completion        # no empty completion (bash>=2.04 only)
+shopt -s sourcepath
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
@@ -171,6 +176,15 @@ else
 fi
 unset color_prompt force_color_prompt
 
+# remove duplicate path entries
+export PATH=$(echo $PATH | awk -F: '
+{ for (i = 1; i <= NF; i++) arr[$i]; }
+END { for (i in arr) printf "%s:" , i; printf "\n"; } ')
+
+# autocomplete ssh commands
+complete -W "$(echo `cat ~/.bash_history | egrep '^ssh ' | sort | uniq | sed 's/^ssh //'`;)" ssh
+
+
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
@@ -206,12 +220,57 @@ alias mkdir="mkdir -pv"
 alias rmf="rm -rf"
 alias wget="wget -c"
 alias top="htop"
-
+alias install='sudo apt install'
+alias update='sudo apt update'
+alias upgrade='sudo apt upgrade'
+alias distupgrade='sudo apt dist-upgrade'
+alias suvim='sudo vim'
+alias whois='whois -H'
+alias updatefonts='sudo fc-cache -vf'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
+
+function compress_() {
+   FILE=$1
+   shift
+   case $FILE in
+      *.tar.bz2) tar cjf $FILE $*  ;;
+      *.tar.gz)  tar czf $FILE $*  ;;
+      *.tgz)     tar czf $FILE $*  ;;
+      *.zip)     zip $FILE $*      ;;
+      *.rar)     rar $FILE $*      ;;
+      *)         echo "Filetype not recognized" ;;
+   esac
+}
+
+function decompress() {
+  local e=0 i c
+  for i; do
+    if [[ -f $i && -r $i ]]; then
+        c=''
+        case $i in
+          *.t@(gz|lz|xz|b@(2|z?(2))|a@(z|r?(.@(Z|bz?(2)|gz|lzma|xz)))))
+                 c='bsdtar xvf' ;;
+          *.7z)  c='7z x'       ;;
+          *.Z)   c='uncompress' ;;
+          *.bz2) c='bunzip2'    ;;
+          *.exe) c='cabextract' ;;
+          *.gz)  c='gunzip'     ;;
+          *.rar) c='unrar x'    ;;
+          *.xz)  c='unxz'       ;;
+          *.zip) c='unzip'      ;;
+          *)     echo "$0: cannot extract \`$i': Unrecognized file extension" >&2; e=1 ;;
+        esac
+        [[ $c ]] && command $c "$i"
+    else
+        echo "$0: cannot extract \`$i': File is unreadable" >&2; e=2
+    fi
+  done
+  return $e
+}
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
