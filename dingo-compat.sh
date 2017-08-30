@@ -33,5 +33,5 @@ sudo -u "$USERNAME" wget  https://raw.githubusercontent.com/myersg86/dotfiles/ma
 sudo -u "$USERNAME" wget https://raw.githubusercontent.com/myersg86/dotfiles/master/.bash-compat-rc &&
 sudo -u "$USERNAME" mv -vf "/home/$USERNAME/".bash-compat-rc" "/home/$USERNAME/.bashrc" &&
 sudo -u "$USERNAME" wget https://raw.githubusercontent.com/myersg86/dotfiles/master/.vi-compatible-rc &&
-sudo -u "$USERNAME" mv -vf "/home/$USERNAME/".vi-compatible-rc" "/home/$USERNAME/.vimrc" &&
+sudo -u "$USERNAME" mv -vf "/home/$USERNAME/".vi-compatible-rc" "/home/$USERNAME/.vimrc"
 # sudo -u "$USERNAME" wget https://raw.githubusercontent.com/myersg86/dotfiles/master/.tmux.conf
