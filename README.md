@@ -10,6 +10,6 @@ sudo bash ./dingo-compat.sh
 ```
 ## UNIVERSAL INSTALLER (no git, no wget, only vi - good for base installs & ssh-only consoles)
 ```
-wget https://raw.githubusercontent.com/myersg86/dotfiles/master/dingo-compat.sh
+curl -LJk -o 'dingo-universe.sh' 'https://raw.githubusercontent.com/myersg86/dotfiles/master/dingo-universe.sh'
 sudo bash ./dingo-universe.sh
 ```
