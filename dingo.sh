@@ -2,7 +2,7 @@
 set -exbE
 USERNAME="$1"
 # Check that username is provided
-if [ -z "$1"]; then
+if [ -z "$1" ]; then
 	echo "No username supplied"
 	exit
 fi &&
