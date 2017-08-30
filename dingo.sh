@@ -2,7 +2,7 @@
 set -exbE
 USERNAME="$1"
 
-if [ -z "$1"]; then
+if [ -n "$1"]; then
 	echo "No username supplied"
 fi &&
 echo "preparing dotfiles for $1" &&
