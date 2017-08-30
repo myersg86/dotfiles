@@ -8,5 +8,5 @@ https://github.com/mrzool/bash-sensible
 
 ```
 wget https://raw.githubusercontent.com/myersg86/dotfiles/master/dingo.sh
-sudo bash ./dingo.sh
+sudo bash ./dingo.sh $USERNAME
 ```
