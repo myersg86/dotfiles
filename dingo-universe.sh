@@ -32,4 +32,4 @@ sudo -u "$USERNAME" unzip -j '.vim_runtime.zip' -d "/home/$USERNAME/.vim_runtime
 sudo -u "$USERNAME" bash "/home/$USERNAME/.vim_runtime/install_basic_vimrc.sh" &&
 sudo -u "$USERNAME" mv -vf "/home/$USERNAME/.vimrc" "/home/$USERNAME/dotfiles_old/" &&
 sudo -u "$USERNAME" curl -o .bashrc https://raw.githubusercontent.com/myersg86/dotfiles/master/.bash-min-rc &&
-sudo -u "$USERNAME" curl -o .vimrc https://raw.githubusercontent.com/myersg86/dotfiles/master/.vi-compat-rc &&
+sudo -u "$USERNAME" curl -o .vimrc https://raw.githubusercontent.com/myersg86/dotfiles/master/.vi-compat-rc
