@@ -240,6 +240,17 @@ alias ungz='tar -xvzf'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
+# LS after CD by default
+cdl() {
+  if [ "$#" = 0 ]; then
+    cd ~ && ls -lhAtr --group-directories-first
+  elif [ -d "$@" ]; then
+    cd "$@" && ls -lhAtr --group-directories-first
+  else
+    echo "$@" directory not found!!!
+  fi
+}
+
 
 # Searches for text in all files in the current folder
 ftext ()
