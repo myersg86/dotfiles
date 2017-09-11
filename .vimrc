@@ -116,7 +116,7 @@ set lazyredraw                  " Don't redraw while executing macros (good perf
 set lbr                         " Linebreak on 500 characters
 set magic                       " For regular expressions turn magic on
 set mat=2                       " How many tenths of a second to blink when matching
-set mouse=a                     " enable using the mouse if terminal emulator
+set mouse-=a                    " disable mouse click visualmode
 set nobackup                    " Turn backup off
 set noerrorbells                " No annoying sound on errors
 set noerrorbells novisualbell   " no annoying error noises
