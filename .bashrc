@@ -78,6 +78,17 @@ function smile_prompt
     DF='\[\e[0m\]'
     PS1="${UC}\u${RC}@${HC}\h:${RC}[\w${DF}] ${SC}${DF} "
 }
+# Color for manpages in less makes manpages a little easier to read
+export LESS_TERMCAP_mb=$'\E[01;31m'
+export LESS_TERMCAP_md=$'\E[01;31m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;33m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;32m'
+
+#
+
 
 ## SMARTER TAB-COMPLETION (Readline bindings) ##
 
@@ -211,18 +222,24 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias vi='vim'
+alias=
 #alias desktop='cd /mnt/c/Users/greg/Desktop'
 alias lsa='ls --color -hAlF --group-directories-first'
 alias mkdir='mkdir -pv'
 alias rmf='rm -rf'
 alias top='htop'
+alias nmap='nmap -A'
+alias Downloads="~/Downloads/"
+alias Desktop="~/Desktop/"
 alias install='sudo apt install'
 alias update='sudo apt update'
 alias upgrade='sudo apt upgrade'
 alias distupgrade='sudo apt dist-upgrade'
-alias suvim='sudo vim'
+alias suvi='sudo vim'
 alias whois='whois -H'
 alias updatefonts='sudo fc-cache -vf'
+
+#https://gist.github.com/trappmartin/2a0dfaa3ab30c000bc004affe9209f4f
 
 # Alias's for archives
 alias mktar='tar -cvf'
