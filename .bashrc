@@ -124,6 +124,9 @@ export BROWSER='google-chrome'          # set default browser
 set -o notify                   # notify when jobs running in background terminate
 set -b                      # causes output from background processes to be output right away, not on wait for next primary prompt
 
+# Enable aliases to be sudo’ed
+alias sudo='sudo '
+
 # Don't record some commands
 export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
 
