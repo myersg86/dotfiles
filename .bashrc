@@ -14,6 +14,13 @@ else
   export EDITOR='subl -w'
 fi
 
+# Enable bash programmable completion features in interactive shells
+if [ -f /usr/share/bash-completion/bash_completion ]; then
+	. /usr/share/bash-completion/bash_completion
+elif [ -f /etc/bash_completion ]; then
+	. /etc/bash_completion
+fi
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL="erasedups:ignoreboth"
@@ -84,6 +91,7 @@ function smile_prompt
     DF='\[\e[0m\]'
     PS1="${UC}\u${RC}@${HC}\h:${RC}[\w${DF}] ${SC}${DF} "
 }
+
 # Color for manpages in less makes manpages a little easier to read
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;31m'
@@ -93,8 +101,10 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
-#
-
+# To have colors for ls and all grep commands such as grep, egrep and zgrep
+export CLICOLOR=1
+export LS_COLORS='no=00:fi=00:di=00;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:*.xml=00;31:'
+export GREP_OPTIONS='--color=auto'
 
 ## SMARTER TAB-COMPLETION (Readline bindings) ##
 
@@ -105,10 +115,11 @@ bind "set completion-ignore-case on"
 bind "set completion-map-case on"
 
 # Display matches for ambiguous patterns at first tab press
-bind "set show-all-if-ambiguous on"
+bind "set show-all-if-ambiguous On"
 
 # Immediately add a trailing slash when autocompleting symlinks to directories
 bind "set mark-symlinked-directories on"
+
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000000
@@ -204,7 +215,6 @@ END { for (i in arr) printf "%s:" , i; printf "\n"; } ')
 # autocomplete ssh commands
 complete -W "$(echo `cat ~/.bash_history | egrep '^ssh ' | sort | uniq | sed 's/^ssh //'`;)" ssh
 
-
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
@@ -227,27 +237,65 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
-alias ll='ls -alF'
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -iv'
+alias mkdir='mkdir -p'
+alias ps='ps auxf'
+alias ping='ping -c 10'
+alias less='less -R'
+alias install='sudo apt install'
+alias update='sudo apt update'
+alias upgrade='sudo apt update && sudo apt upgrade -y'
+alias distupgrade='sudo apt dist-upgrade'
+#alias ll='ls -alF'
 alias la='ls -A'
-alias l='ls -CF'
+#alias l='ls -CF'
 alias vi='vim'
-alias=
+alias svi='sudo vim'
+alias whois='whois -H'
+alias updatefonts='sudo fc-cache -vf'
 #alias desktop='cd /mnt/c/Users/greg/Desktop'
 alias lsa='ls --color -hAlF --group-directories-first'
 alias mkdir='mkdir -pv'
 alias rmf='rm -rf'
-alias top='htop'
-alias nmap='nmap -A'
+alias rmdr='/bin/rm  --recursive --force --verbose '
+
+# Change directory aliases
+alias home='cd ~'
+alias cd..='cd ..'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+# cd into the old directory
+alias bd='cd "$OLDPWD"'
 alias Downloads="~/Downloads/"
 alias Desktop="~/Desktop/"
-alias install='sudo apt install'
-alias update='sudo apt update'
-alias upgrade='sudo apt upgrade'
-alias distupgrade='sudo apt dist-upgrade'
-alias suvi='sudo vim'
-alias whois='whois -H'
-alias updatefonts='sudo fc-cache -vf'
 
+# Permissions chmod
+alias 000='chmod -R 000'
+alias 644='chmod -R 644'
+alias 666='chmod -R 666'
+alias 755='chmod -R 755'
+alias 777='chmod -R 777'
+
+# Search command line history
+alias h="history | grep "
+# Search running processes
+alias p="ps aux | grep "
+alias topcpu="/bin/ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10"
+# Search files in the current folder
+alias f="find . | grep "
+# Count all files (recursively) in the current folder
+alias countfiles="for t in files links directories; do echo \`find . -type \${t:0:1} | wc -l\` \$t; done 2> /dev/null"
+# To see if a command is aliased, a file, or a built-in command
+alias checkcommand="type -t"
+# Show current network connections to the server
+alias ipview="netstat -anpl | grep :80 | awk {'print \$5'} | cut -d\":\" -f1 | sort | uniq -c | sort -n | sed -e 's/^ *//' -e 's/ *\$//'"
+# Show open ports
+alias openports='netstat -nape --inet
+alias tree='tree -CAhF --dirsfirst'
 #https://gist.github.com/trappmartin/2a0dfaa3ab30c000bc004affe9209f4f
 
 # Alias's for archives
@@ -258,7 +306,55 @@ alias untar='tar -xvf'
 alias unbz2='tar -xvjf'
 alias ungz='tar -xvzf'
 
-# LS after CD by default
+ Copy file with a progress bar
+cpp()
+{
+	set -e
+	strace -q -ewrite cp -- "${1}" "${2}" 2>&1 \
+	| awk '{
+	count += $NF
+	if (count % 10 == 0) {
+		percent = count / total_size * 100
+		printf "%3d%% [", percent
+		for (i=0;i<=percent;i++)
+			printf "="
+			printf ">"
+			for (i=percent;i<100;i++)
+				printf " "
+				printf "]\r"
+			}
+		}
+	END { print "" }' total_size=$(stat -c '%s' "${1}") count=0
+}
+
+# Copy and go to the directory
+cpg ()
+{
+	if [ -d "$2" ];then
+		cp $1 $2 && cd $2
+	else
+		cp $1 $2
+	fi
+}
+
+# Move and go to the directory
+mvg ()
+{
+	if [ -d "$2" ];then
+		mv $1 $2 && cd $2
+	else
+		mv $1 $2
+	fi
+}
+
+# Create and go to the directory
+mkdirg ()
+{
+	mkdir -p $1
+	cd $1
+}
+
+# LS after CD
 cdl() {
   if [ "$#" = 0 ]; then
     cd ~ && ls -lhAtr --group-directories-first
@@ -307,44 +403,6 @@ extract () {
 	done
 }
 
-function compress_() {
-   FILE=$1
-   shift
-   case $FILE in
-      *.tar.bz2) tar cjf $FILE $*  ;;
-      *.tar.gz)  tar czf $FILE $*  ;;
-      *.tgz)     tar czf $FILE $*  ;;
-      *.zip)     zip $FILE $*      ;;
-      *.rar)     rar $FILE $*      ;;
-      *)         echo "Filetype not recognized" ;;
-   esac
-}
-
-function decompress() {
-  local e=0 i c
-  for i; do
-    if [[ -f $i && -r $i ]]; then
-        c=''
-        case $i in
-          *.t@(gz|lz|xz|b@(2|z?(2))|a@(z|r?(.@(Z|bz?(2)|gz|lzma|xz)))))
-                 c='bsdtar xvf' ;;
-          *.7z)  c='7z x'       ;;
-          *.Z)   c='uncompress' ;;
-          *.bz2) c='bunzip2'    ;;
-          *.exe) c='cabextract' ;;
-          *.gz)  c='gunzip'     ;;
-          *.rar) c='unrar x'    ;;
-          *.xz)  c='unxz'       ;;
-          *.zip) c='unzip'      ;;
-          *)     echo "$0: cannot extract \`$i': Unrecognized file extension" >&2; e=1 ;;
-        esac
-        [[ $c ]] && command $c "$i"
-    else
-        echo "$0: cannot extract \`$i': File is unreadable" >&2; e=2
-    fi
-  done
-  return $e
-}
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -355,18 +413,8 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 . ~/git-completion.bash
-
 . ~/git-prompt.sh
 export GIT_PS1_SHOWDIRTYSTATE=1
 export PS1='\w$(__git_ps1 " (%s)")\$ '
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
+
