@@ -296,7 +296,7 @@ alias checkcommand="type -t"
 # Show current network connections to the server
 alias ipview="netstat -anpl | grep :80 | awk {'print \$5'} | cut -d\":\" -f1 | sort | uniq -c | sort -n | sed -e 's/^ *//' -e 's/ *\$//'"
 # Show open ports
-alias openports='netstat -nape --inet
+alias openports='netstat -nape --inet'
 alias tree='tree -CAhF --dirsfirst'
 #https://gist.github.com/trappmartin/2a0dfaa3ab30c000bc004affe9209f4f
 
