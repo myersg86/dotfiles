@@ -52,13 +52,9 @@ set nocompatible
 set shell=bash
 
 " Enable filetype plugins
+filetype on
 filetype plugin on
 filetype indent on
-
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
-let mapleader = ","
-let g:mapleader = ","
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -93,7 +89,6 @@ endif
 
 set ai                          " Auto indent
 set autoindent                  " Indent at the same level of the previous line
-set autoread                    " Set to auto read when a file is changed from the outside
 set autoread                    " automatically reload files changed outside of Vim
 set autowrite autowriteall      " write changes before changing buffers, :make and others
 set backspace=eol,start,indent  " Configure backspace so it acts as it should act
@@ -106,7 +101,7 @@ set expandtab                   " Use spaces instead of tabs
 set ffs=unix,dos,mac            " Use Unix as the standard file type
 set fileformats="unix,dos,mac"
 set foldcolumn=1                " Add a bit extra margin to the left
-set hid                         " A buffer becomes hidden when it is abandoned
+set hiddden                        " A buffer becomes hidden when it is abandoned
 set history=1000                " Sets how many lines of history VIM has to remember
 set hlsearch                    " Highlight search results
 set ignorecase                  " Ignore case when searching
@@ -116,7 +111,6 @@ set lazyredraw                  " Don't redraw while executing macros (good perf
 set lbr                         " Linebreak on 500 characters
 set magic                       " For regular expressions turn magic on
 set mat=2                       " How many tenths of a second to blink when matching
-set mouse-=a                    " disable mouse click visualmode
 set nobackup                    " Turn backup off
 set noerrorbells                " No annoying sound on errors
 set noerrorbells novisualbell   " no annoying error noises
@@ -140,7 +134,6 @@ set smarttab                    " Be smart when using tabs ;)
 set smarttab                    " insert tabs on the start of a line according to
 set softtabstop=4
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
-set tabstop=4
 set tabstop=4                   " Tab size
 set tm=500
 set tw=500
@@ -183,15 +176,6 @@ if has("gui_running")
     set t_Co=256
     set guitablabel=%M\ %t
 endif
-
-
-""""""""""""""""""""""""""""""
-" => Visual mode related
-""""""""""""""""""""""""""""""
-" Visual mode pressing * or # searches for the current selection
-" Super useful! From an idea by Michael Naumann
-vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
-vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
