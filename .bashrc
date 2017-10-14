@@ -237,6 +237,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
+
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -iv'
@@ -260,6 +261,7 @@ alias lsa='ls --color -hAlF --group-directories-first'
 alias mkdir='mkdir -pv'
 alias rmf='rm -rf'
 alias rmdr='/bin/rm  --recursive --force --verbose '
+alias weather='curl wttr.in'
 
 # Change directory aliases
 alias home='cd ~'
