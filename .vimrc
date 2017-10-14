@@ -64,6 +64,7 @@ nmap <leader>w :w!<cr>
 command W w !sudo tee % > /dev/null
 
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -87,6 +88,9 @@ else
     set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 endif
 
+" Disable swap files; systems don't crash that often these days
+set updatecount=0
+
 set ai                          " Auto indent
 set autoindent                  " Indent at the same level of the previous line
 set autoread                    " automatically reload files changed outside of Vim
@@ -97,7 +101,6 @@ set cmdheight=2                 " Height of the command bar
 set copyindent                  " copy the previous indentation on autoindenting
 set cursorline                  " Highlight current line
 set encoding=utf8               " Set utf8 as standard encoding and en_US as the standard language
-set expandtab                   " Use spaces instead of tabs
 set ffs=unix,dos,mac            " Use Unix as the standard file type
 set fileformats="unix,dos,mac"
 set foldcolumn=1                " Add a bit extra margin to the left
@@ -108,17 +111,14 @@ set ignorecase                  " Ignore case when searching
 set incsearch                   " Makes search act like search in modern browsers
 set laststatus=2                " Always show the status line
 set lazyredraw                  " Don't redraw while executing macros (good performance config)
-set lbr                         " Linebreak on 500 characters
 set magic                       " For regular expressions turn magic on
 set mat=2                       " How many tenths of a second to blink when matching
 set nobackup                    " Turn backup off
-set noerrorbells                " No annoying sound on errors
 set noerrorbells novisualbell   " no annoying error noises
 set noexpandtab
 set nojoinspaces                " no double spaces when joining lines
 set nomodeline                  " don't use modelines, use securemodelines
 set noswapfile
-set novisualbell
 set nowb
 set number                      " Add line numbers
 set report=0                    " always report the number of lines changed
