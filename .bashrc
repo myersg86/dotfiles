@@ -187,13 +187,10 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
 	color_prompt=yes
     else
 	color_prompt=
@@ -249,18 +246,14 @@ alias install='sudo apt install'
 alias update='sudo apt update'
 alias upgrade='sudo apt update && sudo apt upgrade -y'
 alias distupgrade='sudo apt dist-upgrade'
-#alias ll='ls -alF'
 alias la='ls -A'
-#alias l='ls -CF'
 alias vi='vim'
 alias svi='sudo vim'
 alias whois='whois -H'
 alias updatefonts='sudo fc-cache -vf'
-#alias desktop='cd /mnt/c/Users/greg/Desktop'
 alias lsa='ls --color -hAlF --group-directories-first'
 alias mkdir='mkdir -pv'
-alias rmf='rm -rf'
-alias rmdr='/bin/rm  --recursive --force --verbose '
+alias rmf='rm -rfv'
 alias weather='curl wttr.in'
 
 # Change directory aliases
@@ -286,7 +279,6 @@ alias 777='chmod -R 777'
 alias h="history | grep "
 # Search running processes
 alias p="ps aux | grep "
-alias topcpu="/bin/ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10"
 # Search files in the current folder
 alias f="find . | grep "
 # Count all files (recursively) in the current folder
@@ -308,54 +300,6 @@ alias untar='tar -xvf'
 alias unbz2='tar -xvjf'
 alias ungz='tar -xvzf'
 
- Copy file with a progress bar
-cpp()
-{
-	set -e
-	strace -q -ewrite cp -- "${1}" "${2}" 2>&1 \
-	| awk '{
-	count += $NF
-	if (count % 10 == 0) {
-		percent = count / total_size * 100
-		printf "%3d%% [", percent
-		for (i=0;i<=percent;i++)
-			printf "="
-			printf ">"
-			for (i=percent;i<100;i++)
-				printf " "
-				printf "]\r"
-			}
-		}
-	END { print "" }' total_size=$(stat -c '%s' "${1}") count=0
-}
-
-# Copy and go to the directory
-cpg ()
-{
-	if [ -d "$2" ];then
-		cp $1 $2 && cd $2
-	else
-		cp $1 $2
-	fi
-}
-
-# Move and go to the directory
-mvg ()
-{
-	if [ -d "$2" ];then
-		mv $1 $2 && cd $2
-	else
-		mv $1 $2
-	fi
-}
-
-# Create and go to the directory
-mkdirg ()
-{
-	mkdir -p $1
-	cd $1
-}
-
 # LS after CD
 cdl() {
   if [ "$#" = 0 ]; then
@@ -369,8 +313,7 @@ cdl() {
 
 
 # Searches for text in all files in the current folder
-ftext ()
-{
+ftext () {
 	# -i case-insensitive
 	# -I ignore binary files
 	# -H causes filename to be printed
