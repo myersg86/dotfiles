@@ -138,12 +138,21 @@ set -b                      # causes output from background processes to be outp
 alias sudo='sudo '
 
 # Don't record some commands
-export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
+export HISTIGNORE="&:[ ]*:mysql:exit:ls:bg:fg:history:clear"
 
 # Use standard ISO 8601 timestamp
 # %F equivalent to %Y-%m-%d
 # %T equivalent to %H:%M:%S (24-hours format)
 HISTTIMEFORMAT='%F %T '
+
+## BETTER DIRECTORY NAVIGATION ##
+
+# Prepend cd to directory names automatically
+shopt -s autocd 2> /dev/null
+# Correct spelling errors during tab-completion
+shopt -s dirspell 2> /dev/null
+# Correct spelling errors in arguments supplied to cd
+shopt -s cdspell 2> /dev/null
 
 # Automatically trim long paths in the prompt (requires Bash 4.x)
 PROMPT_DIRTRIM=2
