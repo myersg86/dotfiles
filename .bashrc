@@ -276,6 +276,9 @@ alias bd='cd "$OLDPWD"'
 alias Downloads="~/Downloads/"
 alias Desktop="~/Desktop/"
 
+#make folder and cd to it
+function mcd { mkdir -p "$1" && cd "$1";}
+
 # Permissions chmod
 alias 000='chmod -R 000'
 alias 644='chmod -R 644'
