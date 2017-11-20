@@ -104,7 +104,6 @@ set encoding=utf8               " Set utf8 as standard encoding and en_US as the
 set ffs=unix,dos,mac            " Use Unix as the standard file type
 set fileformats="unix,dos,mac"
 set foldcolumn=1                " Add a bit extra margin to the left
-set hiddden                        " A buffer becomes hidden when it is abandoned
 set history=1000                " Sets how many lines of history VIM has to remember
 set hlsearch                    " Highlight search results
 set ignorecase                  " Ignore case when searching
