@@ -1,14 +1,19 @@
 #!/bin/bash
-set -exbE
+set -ebE
 
+# OPTIONALLY REQUIRE RUN AS SUDO
 # Must be run with SUDO priveleges
-if [ "$EUID" -ne 0 ]
-  then echo "Please execute script with SUDO priveleges"
-  exit
-fi &&
+# if [ "$EUID" -ne 0 ]
+#  then echo "Please execute script with SUDO priveleges"
+#  exit
+# fi &&
 
-echo "What user would you like to install these config settings for?"
-read -p "username: " USERNAME
+# CURRENT USER IS DEFAULT. TO CHANGE THIS, UNCOMMENT LINES 12 and 13 AND REMOVE LINE 15
+# echo "What user would you like to install these config settings for?"
+# read -p "username: " USERNAME
+
+USERNAME="$USER"
+
 echo "OK '$USERNAME', lets do this! Are you ready?"
 echo "preparing dotfiles for '$USERNAME' ..." &&
 
