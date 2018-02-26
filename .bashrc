@@ -34,6 +34,13 @@ shopt -s cmdhist
 # Record each line as it gets issued
 PROMPT_COMMAND='history -a'
 
+# Ignore case on auto-completion
+# Note: bind used instead of sticking these in .inputrc
+if [[ $iatest > 0 ]]; then bind "set completion-ignore-case on"; fi
+
+# Show auto-completion list automatically, without double tab
+if [[ $iatest > 0 ]]; then bind "set show-all-if-ambiguous On"; fi
+
 ## Colors?  Used for the prompt.
 #Regular text color
 BLACK='\[\e[0;30m\]'
@@ -119,8 +126,25 @@ bind "set show-all-if-ambiguous On"
 # Immediately add a trailing slash when autocompleting symlinks to directories
 bind "set mark-symlinked-directories on"
 
+bind TAB:menu-complete
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+bind '"\e\C-r":"\C-ahh -- \C-j"'
+export HH_CONFIG=favorites,favorites,debug
+export HH_CONFIG=hicolor         # get more colors
+shopt -s histappend              # append new history items to .bash_history
+export HISTCONTROL=ignorespace   # leading space hides commands from history
+export HISTFILESIZE=10000        # increase history file size (default is 500)
+export HISTSIZE=${HISTFILESIZE}  # increase history size (default is 500)
+export HISTCONTROL=ignorespace
+export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"   # mem/file sync
+
+
+# if this is interactive shell, then bind hh to Ctrl-r (for Vi mode check doc)
+if [[ $- =~ .*i.* ]]; then bind '"\C-r": "\C-a hh -- \C-j"'; fi
+
+
 HISTSIZE=1000000
 HISTFILESIZE=2000000
 
@@ -370,5 +394,3 @@ fi
 
 . ~/git-completion.bash
 . ~/git-prompt.sh
-export GIT_PS1_SHOWDIRTYSTATE=1
-export PS1='\w$(__git_ps1 " (%s)")\$ '
