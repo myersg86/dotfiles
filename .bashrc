@@ -267,6 +267,7 @@ fi
 
 # some more ls aliases
 
+alias numlockon='xmodmap -e "keycode 77 ="'
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias rm='rm -Iv'
