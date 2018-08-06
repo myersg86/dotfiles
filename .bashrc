@@ -300,6 +300,7 @@ alias .....='cd ../../../..'
 alias bd='cd "$OLDPWD"'
 alias Downloads="~/Downloads/"
 alias Desktop="~/Desktop/"
+alias drpbx="python ~/dropbox.py "
 
 #make folder and cd to it
 function mcd { mkdir -p "$1" && cd "$1";}
