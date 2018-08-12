@@ -1,0 +1,25 @@
+[global_config]
+  enabled_plugins = InactivityWatch, CustomCommandsMenu, ActivityWatch, TerminalShot, LaunchpadCodeURLHandler, APTURLHandler, Logger, MavenPluginURLHandler, LaunchpadBugURLHandler
+  title_hide_sizetext = True
+  title_inactive_bg_color = "#111111"
+  title_inactive_fg_color = "#757575"
+  title_receive_bg_color = "#006f95"
+  title_transmit_bg_color = "#607d8b"
+[keybindings]
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    background_color = "#111111"
+    background_image = None
+    cursor_color = "#D8DEE9"
+    font = IBM Plex Mono 9
+    foreground_color = "#D8DEE9"
+    palette = "#3B4252:#BF616A:#A3BE8C:#EBCB8B:#81A1C1:#B48EAD:#88C0D0:#E5E9F0:#4C566A:#BF616A:#A3BE8C:#EBCB8B:#81A1C1:#B48EAD:#8FBCBB:#ECEFF4"
