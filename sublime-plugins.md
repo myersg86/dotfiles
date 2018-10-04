@@ -28,7 +28,6 @@ This is a curated list of plugins that I use regularly.
 * [Editor Config](https://packagecontrol.io/packages/EditorConfig): Maintain consistent coding styles between different editors.
 * [Emmet](https://packagecontrol.io/packages/Emmet): Allows you to write HTML very fast. You have to learn their way though.
 * [FindKeyConflicts](https://packagecontrol.io/packages/FindKeyConflicts): Key conflicts are inevitable when you use a lot of plugins.
-* [Genesis]
 * [GitGutter](https://packagecontrol.io/packages/GitGutter): Displays modified lines in the gutter (left to the line numbers).
 * [GitSavvy](https://packagecontrol.io/packages/GitSavvy): Full git and GitHub integration.
 * [Git](https://packagecontrol.io/packages/Git): Includes some git commands.
