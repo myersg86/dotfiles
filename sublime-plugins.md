@@ -4,7 +4,7 @@ Sublime is great and for many still the best text editor available. But out of t
 
 If you know plugins that should be on this list, just open an issue. 😉
 
-### Table of Contents
+### Table of Contents### Table of Contents
 
 1. [Plugins](#plugins)
 2. [Themes](#themes)
