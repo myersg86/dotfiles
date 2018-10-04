@@ -62,10 +62,6 @@ This is a curated list of plugins that I use regularly.
 * [TodoReview](https://packagecontrol.io/packages/TodoReview): Scans files for `TODO`s and more.
 * [WPCS Whitelist Flags]
 * [Whitespace]
-* [WordPress Completions]
-* [WordPress Dev]
-* [WordPress]
-* [Wordpress Snippets]
 
 ## 2. Themes
 
