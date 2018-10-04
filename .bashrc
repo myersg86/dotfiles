@@ -8,11 +8,7 @@ case $- in
       *) return;;
 esac
 
-if [ "$SSH_CONNECTION" ]; then
-  export EDITOR='vim'
-else
-  export EDITOR='subl -w'
-fi
+export EDITOR='vim'
 
 # Enable bash programmable completion features in interactive shells
 if [ -f /usr/share/bash-completion/bash_completion ]; then
