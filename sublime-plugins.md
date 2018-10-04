@@ -23,8 +23,6 @@ This is a curated list of plugins that I use regularly.
 * [ApacheConf]
 * [BracketHighlighter](https://packagecontrol.io/packages/BracketHighlighter): Improves the already built-in highlighting.
 * [CSS3](https://packagecontrol.io/packages/CSS3): Replaces the built-in CSS support with a more up-to-date one. Includes [cssnext](http://cssnext.io) support. Follow the instructions to make it work properly.
-* [Case Conversion]
-* [CodeComplice]
 * [Color Highlighter](https://packagecontrol.io/packages/Color%20Highlighter)
 * [DevSkim]
 * [Editor Config](https://packagecontrol.io/packages/EditorConfig): Maintain consistent coding styles between different editors.
