@@ -39,13 +39,7 @@ This is a curated list of plugins that I use regularly.
 * [Local History](https://packagecontrol.io/packages/Local%20History): Keep a local history of your files.
 * [Log highlight]
 * [Markdown Preview](https://packagecontrol.io/packages/Markdown%20Preview)
-* [PHP Completions Kit]
-* [PHPIntel]
-* [php-grammar]
 * [Package Control](https://packagecontrol.io/packages/Package%20Control): This package enables you to install other packages. Since build 3124, you can install it within Sublime via <em>Tools</em> <em>Install Package Control</em>.
-* [Package Syncing](https://packagecontrol.io/packages/Package%20Syncing): Keep all you settings, packages etc in sync via Dropbox and co
-* [ProjectManager](https://packagecontrol.io/packages/ProjectManager): Organizing project files by putting them in a central location.
-[SFTP](https://packagecontrol.io/packages/SFTP): Transfer files to a server via FTPS and SFTP. The plugin is like Sublime
 * [Sass](https://packagecontrol.io/packages/Sass): Sass is a preprocessor extending CSS and this plugins adds the language support.
 * [SideBarEnhancements](https://packagecontrol.io/packages/SideBarEnhancements): Adds features such as renaming to the sidebar.
 * [SublimeCodeIntel]
