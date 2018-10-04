@@ -65,8 +65,6 @@ This is a curated list of plugins that I use regularly.
 
 ## 2. Themes
 
-The built-in themes do not support recent syntax such as ES2015. In the following, I list some I have test and do it.
-
 * [spacegray](https://github.com/kkga/spacegray)
 * [ayu](https://packagecontrol.io/packages/ayu)
 
