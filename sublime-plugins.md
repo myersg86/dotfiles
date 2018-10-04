@@ -169,6 +169,7 @@ SpaceGray
 ```
 
 #### windows settings
+
 ```
 {
     "always_show_minimap_viewport": true,
