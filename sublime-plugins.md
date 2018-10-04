@@ -62,7 +62,6 @@ This is a curated list of plugins that I use regularly.
 * [spacegray](https://github.com/kkga/spacegray)
 * [ayu](https://packagecontrol.io/packages/ayu)
 
-
 <a name="settings"/>
 
 ## 3. Settings
