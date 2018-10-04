@@ -2,7 +2,8 @@
 
 Sublime is great and for many still the best text editor available. 
 But out of the box, it lacks some features that modern competitors have already built-in. 
-Plugins help to stay ahead but it's a hassle to keep up with all of them. This is a curated list of plugins that I use regularly.
+Plugins help to stay ahead but it's a hassle to keep up with all of them. 
+This is a curated list of plugins that I use regularly.
 
 ### Table of Contents
 
@@ -14,7 +15,6 @@ Plugins help to stay ahead but it's a hassle to keep up with all of them. This i
 
 ## 1. Plugins
 
-* [A File Icon](https://packagecontrol.io/packages/A%20File%20Icon): Add icons to the files in the sidebar.
 * [Advanced CSV](https://packagecontrol.io/packages/Advanced%20CSV)
 * [AdvancedNewFile](https://packagecontrol.io/packages/AdvancedNewFile): A better way to create new files. For instance, it automatically creates a folder when needed.
 * [AlignTab](https://packagecontrol.io/packages/AlignTab): Align your code by `:`, `=`, `=>`, `%`, ` `, `|` or your own RegEx.
