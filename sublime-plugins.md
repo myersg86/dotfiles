@@ -21,7 +21,6 @@ This is a curated list of plugins that I use regularly.
 * [Alignment]
 * [All Autocomplete](https://packagecontrol.io/packages/All%20Autocomplete): Indexes all open files for auto-completion.
 * [ApacheConf]
-* [ayu](https://packagecontrol.io/packages/ayu)
 * [BracketHighlighter](https://packagecontrol.io/packages/BracketHighlighter): Improves the already built-in highlighting.
 * [CSS3](https://packagecontrol.io/packages/CSS3): Replaces the built-in CSS support with a more up-to-date one. Includes [cssnext](http://cssnext.io) support. Follow the instructions to make it work properly.
 * [Case Conversion]
@@ -71,8 +70,10 @@ This is a curated list of plugins that I use regularly.
 ## 2. Themes
 
 The built-in themes do not support recent syntax such as ES2015. In the following, I list some I have test and do it.
+
 * [spacegray](https://github.com/kkga/spacegray)
 * [ayu](https://packagecontrol.io/packages/ayu)
+
 
 <a name="settings"/>
 
