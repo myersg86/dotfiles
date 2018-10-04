@@ -4,6 +4,6 @@
 
 ## VSCode
 
-## Geany
-
 ## Atom
+
+## Geany
