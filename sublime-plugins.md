@@ -1,7 +1,7 @@
 # Sublime Text 3 Plugins for Frontend Web Development
 
 Sublime is great and for many still the best text editor available. 
-But out of the box, it lacks some features that modern competitors have already built-in. Plugins help to stay ahead but it's a hassle to keep up with all of them. This is a curated list of plugins I use for my 
+But out of the box, it lacks some features that modern competitors have already built-in. Plugins help to stay ahead but it's a hassle to keep up with all of them. This is a curated list of plugins I use & enjoy
 
 ### Table of Contents
 
